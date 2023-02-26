@@ -38,18 +38,20 @@ class BaseClient {
     var _payload = json.encode(object);
     var _headers = {'Content-Type': 'application/json'};
     var response = await client.put(url, body: _payload, headers: _headers);
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var json = response.body;
       userFromJson(json);
       return userFromJson(json);
     }
   }
 
-  Future<dynamic> deleteData(id) async {
+  Future<dynamic> deleteData(id,{dynamic object}) async {
     var url = Uri.parse(baseUrl + (id).toString());
     var _headers = {'Content-Type': 'application/json'};
-    var response = await client.delete(url, headers: _headers);
-    if (response.statusCode == 200) {
+    var _payload = json.encode(object);
+
+    var response = await client.delete(url,headers: _headers);
+    if (response.statusCode == 201) {
       var json = response.body;
       userFromJson(json);
       return userFromJson(json);

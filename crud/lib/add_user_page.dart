@@ -76,7 +76,7 @@ class _AddUserState extends State<AddUser> {
                           BaseClient()
                               .postData(user)
                               .then((value) => Navigator.of(context).pop(true));
-                        } else {
+                        } if(widget.map!=null) {
                           var user = User(
                             name: nameController.text,
                             city: cityController.text,
